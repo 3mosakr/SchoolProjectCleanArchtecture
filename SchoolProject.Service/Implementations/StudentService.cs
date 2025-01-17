@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities;
+using SchoolProject.Data.Helpers;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Service.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Service.Implementations
 {
@@ -22,7 +18,7 @@ namespace SchoolProject.Service.Implementations
             _studentRepository = studentRepository;
         }
 
-        
+
         #endregion
 
         #region Handler Methodes
@@ -30,39 +26,123 @@ namespace SchoolProject.Service.Implementations
         {
             return await _studentRepository.GetStudentsListAsync();
         }
-        
-        public async Task<Student> GetStudentByIdAsync(int id)
+
+        public async Task<Student> GetStudentByIdWithIncludeAsync(int id)
         {
-            //var student = await _studentRepository.GetByIdAsync(id);
             var student = _studentRepository.GetTableNoTracking()
-                .Include(x=>x.Department)
+                .Include(x => x.Department)
                 .Where(x => x.Id == id)
-                . FirstOrDefault();
+                .FirstOrDefault();
 
             return student;
         }
 
         public async Task<string> AddAsync(Student student)
         {
-            // check if the name is Existing or not
-            var StudentExist = _studentRepository
-                .GetTableNoTracking()
-                .Where(x => x.NameEn.Equals(student.NameEn))
-                .FirstOrDefault();
 
-            if (StudentExist != null)
-                return "Exist";
-            // validate is department is exist
-            var isDepartmentExist = _studentRepository
-                .GetTableNoTracking()
-                .Include(x=>x.Department).Any(x => x.Department.Id == student.Id);
-
-            if (!isDepartmentExist)
-                return "Fail";
+            //// validate is department is exist 
 
             // Add Student
             await _studentRepository.AddAsync(student);
             return "Success";
+        }
+
+        public async Task<bool> IsNameExist(string name)
+        {
+            // check if the name is Existing or not
+            var StudentExist = _studentRepository
+                .GetTableNoTracking()
+                .Where(x => x.NameEn.Equals(name))
+                .FirstOrDefault();
+
+            if (StudentExist == null)
+                return false;
+            return true;
+        }
+
+        public async Task<bool> IsNameExistExcludeSelf(string name, int id)
+        {
+            // check if the name is Existing or not
+            var StudentExist = await _studentRepository
+                .GetTableNoTracking()
+                .Where(x => x.NameEn.Equals(name) & !x.Id.Equals(id))
+                .FirstOrDefaultAsync();
+
+            if (StudentExist == null)
+                return false;
+            return true;
+        }
+
+        public async Task<string> EditAsync(Student student)
+        {
+            await _studentRepository.UpdateAsync(student);
+            return "Success";
+        }
+
+        public async Task<string> DeleteAsync(Student student)
+        {
+            var transaction = _studentRepository.BeginTransaction();
+            try
+            {
+                await _studentRepository.DeleteAsync(student);
+                await transaction.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return "Failed";
+            }
+
+        }
+
+        public async Task<Student> GetByIdAsync(int id)
+        {
+            var student = await _studentRepository.GetByIdAsync(id);
+
+            return student;
+        }
+
+        public IQueryable<Student> GetStudentsQueryable()
+        {
+            return _studentRepository
+                .GetTableNoTracking()
+                .Include(x => x.Department)
+                .AsQueryable();
+        }
+
+        public IQueryable<Student> FilterStudentPaginatedQuerable(StudentOrderingEnum orderingEnum, string search)
+        {
+            var querable = _studentRepository
+                .GetTableNoTracking()
+                .Include(x => x.Department)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                querable = querable.Where(x => x.NameEn.Contains(search) || x.Address.Contains(search));
+            }
+
+            switch (orderingEnum)
+            {
+                case StudentOrderingEnum.Id:
+                    querable = querable.OrderBy(x => x.Id);
+                    break;
+                case StudentOrderingEnum.NameEn:
+                    querable = querable.OrderBy(x => x.NameEn);
+                    break;
+                case StudentOrderingEnum.Address:
+                    querable = querable.OrderBy(x => x.Address);
+                    break;
+                case StudentOrderingEnum.DepartmentName:
+                    querable = querable.OrderBy(x => x.Department.NameEn);
+                    break;
+                default:
+                    querable = querable.OrderBy(x => x.Id);
+                    break;
+            }
+
+            return querable;
         }
         #endregion
     }
