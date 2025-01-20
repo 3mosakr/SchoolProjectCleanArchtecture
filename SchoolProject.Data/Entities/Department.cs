@@ -1,6 +1,8 @@
-﻿namespace SchoolProject.Data.Entities
+﻿using SchoolProject.Data.Commons;
+
+namespace SchoolProject.Data.Entities
 {
-    public class Department
+    public class Department : GeneralLocalizableEntity
     {
 
         public int Id { get; set; }

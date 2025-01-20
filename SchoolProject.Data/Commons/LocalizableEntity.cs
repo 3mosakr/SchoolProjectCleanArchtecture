@@ -2,6 +2,7 @@
 
 namespace SchoolProject.Data.Commons
 {
+    // - not used ( replaced with GeneralLocalizableEntity)
     public class LocalizableEntity
     {
         public string NameAr { get; set; }

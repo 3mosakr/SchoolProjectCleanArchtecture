@@ -1,6 +1,8 @@
-﻿namespace SchoolProject.Data.Entities
+﻿using SchoolProject.Data.Commons;
+
+namespace SchoolProject.Data.Entities
 {
-    public class Subject
+    public class Subject : GeneralLocalizableEntity
     {
         public int Id { get; set; }
         public string NameEn { get; set; }

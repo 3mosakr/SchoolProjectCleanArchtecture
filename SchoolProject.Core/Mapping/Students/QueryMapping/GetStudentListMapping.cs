@@ -8,8 +8,9 @@ namespace SchoolProject.Core.Mapping.Students
         public void GetStudentListMapping()
         {
             CreateMap<Student, GetStudentListResponse>()
-                .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Department.NameEn))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.GetLocalized()));
+                .ForMember(dest => dest.DepartmentName,
+                    opt => opt.MapFrom(src => src.Department.Localize(src.Department.NameAr, src.Department.NameEn)))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
             ;
         }
     }

@@ -5,12 +5,13 @@ namespace SchoolProject.Core.Mapping.Students
 {
     public partial class StudentProfile
     {
-        public void GetStudentByIdMapping()
+        public void GetStudentPaginationMapping()
         {
-            CreateMap<Student, GetSingleStudentResponse>()
+            CreateMap<Student, GetStudentPaginatedListResponse>()
                 .ForMember(dest => dest.DepartmentName,
                     opt => opt.MapFrom(src => src.Department.Localize(src.Department.NameAr, src.Department.NameEn)))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
+            ;
         }
     }
 }
