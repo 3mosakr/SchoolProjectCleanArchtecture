@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.Students.Commands.Models;
+using SchoolProject.Core.Resources;
 using SchoolProject.Data.Entities;
 using SchoolProject.Service.Abstracts;
 
@@ -15,13 +17,17 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
         #region Fields
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
+        private readonly IStringLocalizer<SharedResources> _localizer;
         #endregion
 
         #region Constructor
-        public StudentCommandHandler(IStudentService studentService, IMapper mapper)
+        public StudentCommandHandler(IStudentService studentService,
+            IMapper mapper,
+            IStringLocalizer<SharedResources> localizer) : base(localizer)
         {
             _studentService = studentService;
             _mapper = mapper;
+            _localizer = localizer;
         }
         #endregion
 
@@ -36,9 +42,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
 
             // return response
             if (result == "Success")
-                return Created("Added Successfully");
-            else if (result == "Fail")
-                return BadRequest<string>($"there is no department with this Id {request.DepartmentId}");
+                return Created("");
             else
                 return BadRequest<string>();
         }
@@ -55,7 +59,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             var result = await _studentService.EditAsync(studentMapper);
 
             if (result == "Success")
-                return Updated($"Edit Successfully at student with id = {studentMapper.Id}");
+                return Success($"Student With Id {request.Id} is " + (string)_localizer[SharedResourcesKeys.Updated]);
             else
                 return BadRequest<string>();
 

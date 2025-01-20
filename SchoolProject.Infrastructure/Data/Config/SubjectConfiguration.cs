@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SchoolProject.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Infrastructure.Data.Config
 {
@@ -15,14 +10,14 @@ namespace SchoolProject.Infrastructure.Data.Config
         {
             builder.HasKey(s => s.Id);
 
-            //builder.Property(s => s.NameAr)
-            //    .HasColumnType("NVARCHAR")
-            //    .HasMaxLength(50)
-            //    .IsRequired();
+            builder.Property(s => s.NameAr)
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(100)
+                .IsRequired(false);
 
             builder.Property(s => s.NameEn)
                 .HasColumnType("VARCHAR")
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .IsRequired();
 
             // Relationships
