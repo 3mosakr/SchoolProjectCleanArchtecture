@@ -33,6 +33,12 @@ namespace SchoolProject.Infrastructure.Data.Config
                 .HasForeignKey(x => x.SubjectId)
                 .IsRequired();
 
+            // Required One to Many with DepartmentSubjects [Dependent (InstructorSubjects) - Principal (Subject)] [Cascade Delete]
+            builder.HasMany(s => s.InstructorSubjects)
+                .WithOne(IS => IS.Subject)
+                .HasForeignKey(x => x.SubjectId)
+                .IsRequired();
+
             builder.ToTable("Subjects");
 
         }

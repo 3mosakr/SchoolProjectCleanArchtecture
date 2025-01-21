@@ -22,13 +22,16 @@ namespace SchoolProject.Infrastructure.Data.Config
 
             builder.Property(s => s.Address)
                 .HasColumnType("NVARCHAR")
-                .HasMaxLength(300)
-                .IsRequired();
+                .HasMaxLength(255)
+                .IsRequired(false);
 
             builder.Property(s => s.Phone)
                 .HasColumnType("VARCHAR")
                 .HasMaxLength(15)
-                .IsRequired();
+                .IsRequired(false);
+
+            builder.Property(s => s.DepartmentId)
+                .IsRequired(false);
 
             // Relationships
             // Required One to Many with Department [Dependent (Student) - Principal (Department)] [Cascade Delete]

@@ -53,8 +53,12 @@ namespace SchoolProject.Core.Features.Students.Commands.Validators
             //    !await _studentService.IsNameExistExcludeSelf(Key, model.Id))
             //    .WithMessage("Name is Exist before");
             RuleFor(x => x.NameEn)
-                .MustAsync(async (model, Key, CancellationToken) => !await _studentService.IsNameExistExcludeSelf(Key, model.Id))
+                .MustAsync(async (model, Key, CancellationToken) => !await _studentService.IsNameEnExistExcludeSelf(Key, model.Id))
                 .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
+
+            RuleFor(x => x.NameAr)
+               .MustAsync(async (model, Key, CancellationToken) => !await _studentService.IsNameArExistExcludeSelf(Key, model.Id))
+               .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
         }
         #endregion
     }

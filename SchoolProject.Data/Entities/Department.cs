@@ -7,18 +7,19 @@ namespace SchoolProject.Data.Entities
 
         public int Id { get; set; }
         public string NameEn { get; set; }
-        public string NameAr { get; set; }
+        public string? NameAr { get; set; }
 
         public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 
         public virtual ICollection<DepartmentSubject> DepartmentSubjects { get; set; } = new List<DepartmentSubject>();
 
-        //[InverseProperty("department")]
-        //public virtual ICollection<Instructor> Instructors { get; set; }
 
-        //public int InsManager { get; set; }
-        //[ForeignKey("InsManager")]
-        //[InverseProperty("departmentManager")]
-        //public virtual Instructor? Instructor { get; set; }
+        // (Teach relation) with Instructor
+        public virtual ICollection<Instructor> Instructors { get; set; } = new List<Instructor>();
+
+
+        // (Mange relation) with Instructor
+        public int? ManagerId { get; set; }
+        public virtual Instructor? Instructor { get; set; }
     }
 }

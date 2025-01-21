@@ -54,7 +54,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Handlers
             if (studentExist == null)
                 return NotFound<string>($"There is no student with this id {request.Id}");
             // mapping Between request and student
-            var studentMapper = _mapper.Map<Student>(request);
+            var studentMapper = _mapper.Map(request, studentExist);
             // make edit ( call service )
             var result = await _studentService.EditAsync(studentMapper);
 
