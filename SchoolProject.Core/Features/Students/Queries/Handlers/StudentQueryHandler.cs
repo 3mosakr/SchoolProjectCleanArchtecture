@@ -35,7 +35,13 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             var studentList = await _studentService.GetStudentsListAsync();
             var studentListMapper = _mapper.Map<List<GetStudentListResponse>>(studentList);
 
-            return Success(studentListMapper);
+            // result ( response )
+            var result = Success(studentListMapper);
+            result.Meta = new
+            {
+                Count = studentListMapper.Count
+            };
+            return result;
         }
 
         public async Task<Response<GetSingleStudentResponse>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
@@ -55,7 +61,12 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             // Make Expression to get students and put it into response 
             // - convert from student to GetStudentPaginatedListResponse
             Expression<Func<Student, GetStudentPaginatedListResponse>> expression =
-                student => new GetStudentPaginatedListResponse(student.Id, student.NameEn, student.Address, student.Department.NameEn);
+                student => new GetStudentPaginatedListResponse(
+                    student.Id,
+                    student.Localize(student.NameAr, student.NameEn),
+                    student.Address,
+                    student.Department.Localize(student.Department.NameAr, student.Department.NameEn)
+                    );
 
             var FilterQuery = _studentService.FilterStudentPaginatedQuerable(request.OrderBy, request.Search);
 
@@ -63,6 +74,11 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             .Select(expression) // convert from student to GetStudentPaginatedListResponse
             .ToPaginatedListAsync(request.PageNumber, request.PageSize);
 
+            // result ( response )
+            paginatedList.Meta = new
+            {
+                Count = paginatedList.Data.Count
+            };
             return paginatedList;
 
         }
