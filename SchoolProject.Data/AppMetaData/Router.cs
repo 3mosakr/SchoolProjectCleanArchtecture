@@ -18,6 +18,12 @@
             public const string Delete = prefix + SingleRoute;
             public const string Paginated = prefix + "/Paginated";
 
+        }
+
+        public static class DepartmentRouting
+        {
+            public const string prefix = Rule + "Department";
+            public const string GetById = prefix + "/Id";
 
         }
     }

@@ -17,10 +17,13 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
         IRequestHandler<GetStudentByIdQuery, Response<GetSingleStudentResponse>>,
         IRequestHandler<GetStudentPaginatedListQuery, PaginatedResult<GetStudentPaginatedListResponse>>
     {
+        #region Fields
         private readonly IStudentService _studentService;
         private readonly IMapper _mapper;
         private readonly IStringLocalizer<SharedResources> _stringLocalization;
+        #endregion
 
+        #region Constructor
         public StudentQueryHandler(IStudentService studentService,
             IMapper mapper,
             IStringLocalizer<SharedResources> stringLocalization) : base(stringLocalization)
@@ -29,6 +32,9 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             _mapper = mapper;
             _stringLocalization = stringLocalization;
         }
+        #endregion
+
+        #region Handle Methods
         public async Task<Response<List<GetStudentListResponse>>> Handle(GetStudentListQuery request, CancellationToken cancellationToken)
         {
             // Mapping using AutoMapper
@@ -82,5 +88,6 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
             return paginatedList;
 
         }
+        #endregion
     }
 }

@@ -18,7 +18,6 @@ namespace SchoolProject.Service.Implementations
             _studentRepository = studentRepository;
         }
 
-
         #endregion
 
         #region Handler Methodes
@@ -169,6 +168,14 @@ namespace SchoolProject.Service.Implementations
             }
 
             return querable;
+        }
+
+        public IQueryable<Student> GetStudentsByDepartmentIdQueryable(int departmentId)
+        {
+            return _studentRepository
+                .GetTableNoTracking()
+                .Where(s => s.DepartmentId == departmentId)
+                .AsQueryable();
         }
         #endregion
     }
