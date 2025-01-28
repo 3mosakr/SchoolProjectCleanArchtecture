@@ -6,9 +6,7 @@ using SchoolProject.Core.Features.Students.Queries.Models;
 using SchoolProject.Core.Features.Students.Queries.Results;
 using SchoolProject.Core.Resources;
 using SchoolProject.Core.Wrappers;
-using SchoolProject.Data.Entities;
 using SchoolProject.Service.Abstracts;
-using System.Linq.Expressions;
 
 namespace SchoolProject.Core.Features.Students.Queries.Handlers
 {
@@ -64,27 +62,33 @@ namespace SchoolProject.Core.Features.Students.Queries.Handlers
 
         public async Task<PaginatedResult<GetStudentPaginatedListResponse>> Handle(GetStudentPaginatedListQuery request, CancellationToken cancellationToken)
         {
-            // Make Expression to get students and put it into response 
-            // - convert from student to GetStudentPaginatedListResponse
-            Expression<Func<Student, GetStudentPaginatedListResponse>> expression =
-                student => new GetStudentPaginatedListResponse(
-                    student.Id,
-                    student.Localize(student.NameAr, student.NameEn),
-                    student.Address,
-                    student.Department.Localize(student.Department.NameAr, student.Department.NameEn)
-                    );
+            //// Make Expression to get students and put it into response 
+            //// - convert from student to GetStudentPaginatedListResponse
+            //Expression<Func<Student, GetStudentPaginatedListResponse>> expression =
+            //    student => new GetStudentPaginatedListResponse(
+            //        student.Id,
+            //        student.Localize(student.NameAr, student.NameEn),
+            //        student.Address,
+            //        student.Department.Localize(student.Department.NameAr, student.Department.NameEn)
+            //        );
 
             var FilterQuery = _studentService.FilterStudentPaginatedQuerable(request.OrderBy, request.Search);
 
-            var paginatedList = await FilterQuery
-            .Select(expression) // convert from student to GetStudentPaginatedListResponse
-            .ToPaginatedListAsync(request.PageNumber, request.PageSize);
+            //var paginatedList = await FilterQuery
+            //.Select(expression) // convert from student to GetStudentPaginatedListResponse
+            //.ToPaginatedListAsync(request.PageNumber, request.PageSize);
+
+            // Anther pagination way without Expression / using mapper
+            var paginatedList = await _mapper
+                .ProjectTo<GetStudentPaginatedListResponse>(FilterQuery)
+                .ToPaginatedListAsync(request.PageNumber, request.PageSize);
 
             // result ( response )
             paginatedList.Meta = new
             {
                 Count = paginatedList.Data.Count
             };
+
             return paginatedList;
 
         }
