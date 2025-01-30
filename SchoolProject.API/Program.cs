@@ -20,8 +20,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 #region Dependecies injection
 // Add all modules dependacies 
 builder.Services.AddInfrastructureDependecies()
-    .AddServiceDependecies()
-    .AddCoreDependecies();
+                .AddServiceDependecies()
+                .AddCoreDependecies()
+                .AddServiceRegisteration();
 #endregion
 
 #region Localization
