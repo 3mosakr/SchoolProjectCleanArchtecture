@@ -10,9 +10,8 @@ namespace SchoolProject.Infrastructure.Data.Config
         {
             builder.HasKey(d => new { d.StudentId, d.SubjectId });
 
-            builder.Property(s => s.Grade)
-                .HasColumnType("decimal(4, 2)")
-                .IsRequired(false);
+            builder.Property(s => s.grade)
+                .HasColumnType("decimal(5, 2)");
 
             builder.ToTable("StudentSubjects");
         }
