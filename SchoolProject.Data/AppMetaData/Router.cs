@@ -26,5 +26,13 @@
             public const string GetById = prefix + "/Id";
 
         }
+
+        public static class ApplicationUserRouting
+        {
+            public const string prefix = Rule + "User";
+            public const string GetById = prefix + SingleRoute;
+            public const string Create = prefix + "/Create";
+
+        }
     }
 }
