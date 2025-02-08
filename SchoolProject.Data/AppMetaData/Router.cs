@@ -32,6 +32,7 @@
             public const string prefix = Rule + "User";
             public const string GetById = prefix + SingleRoute;
             public const string Create = prefix + "/Create";
+            public const string Paginated = prefix + "/Paginated";
 
         }
     }
