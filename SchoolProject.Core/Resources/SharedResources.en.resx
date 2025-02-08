@@ -189,9 +189,6 @@
   <data name="IsNotExist" xml:space="preserve">
     <value> is Not Exist</value>
   </data>
-  <data name="MaxLengthis100" xml:space="preserve">
-    <value>The Max Length is 100</value>
-  </data>
   <data name="Message" xml:space="preserve">
     <value>Message</value>
   </data>
@@ -275,5 +272,11 @@
   </data>
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>UserName Is Not Exist</value>
+  </data>
+  <data name="MaxLengthis255" xml:space="preserve">
+    <value>The Max Length is 255</value>
+  </data>
+  <data name="MaxLengthis100" xml:space="preserve">
+    <value>The Max Length is 100</value>
   </data>
 </root>

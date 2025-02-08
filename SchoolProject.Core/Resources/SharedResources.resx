@@ -118,165 +118,165 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFailed" xml:space="preserve">
-    <value>حدث خطأ في الاضافة</value>
+    <value />
   </data>
   <data name="AlgorithmIsWrong" xml:space="preserve">
-    <value>هناك خطأ في الخوارزمية المستخدمة في التشفير</value>
+    <value />
   </data>
   <data name="BadRequest" xml:space="preserve">
-    <value>هذا الطلب لا يمكن فهمه</value>
+    <value />
   </data>
   <data name="ChangePassFailed" xml:space="preserve">
-    <value>حدث خطأ اثناء عملية تغيير الباسورد</value>
+    <value />
   </data>
   <data name="ConfirmEmailDone" xml:space="preserve">
-    <value>تم التأكيد الايميل بنجاح</value>
+    <value />
   </data>
   <data name="Created" xml:space="preserve">
-    <value>تم الاضافة بنجاح</value>
+    <value />
   </data>
   <data name="Deleted" xml:space="preserve">
-    <value>تم الحذف بنجاح</value>
+    <value />
   </data>
   <data name="DeletedFailed" xml:space="preserve">
-    <value>حدث خطأ اثناء عملية حذف البيانات</value>
+    <value />
   </data>
   <data name="DepartmementId" xml:space="preserve">
-    <value>رقم القسم</value>
+    <value />
   </data>
   <data name="Email" xml:space="preserve">
-    <value>الايميل</value>
+    <value />
   </data>
   <data name="EmailIsExist" xml:space="preserve">
-    <value>الايميل الذي ادخلته موجود بالفعل</value>
+    <value />
   </data>
   <data name="EmailNotConfirmed" xml:space="preserve">
-    <value>من فضلك قم بتأكيد الايميل</value>
+    <value />
   </data>
   <data name="ErrorWhenConfirmEmail" xml:space="preserve">
-    <value>حدث خطأ اثناء تأكيد الايميل</value>
+    <value />
   </data>
   <data name="FaildToAddUser" xml:space="preserve">
-    <value>حدث خطأ اثناء اضافة المستخدم</value>
+    <value />
   </data>
   <data name="FailedToAddNewClaims" xml:space="preserve">
-    <value>حدث حطأ اثناء اضافة صلاحيات الاستخدام  جديدة للمستخدمين</value>
+    <value />
   </data>
   <data name="FailedToAddNewRoles" xml:space="preserve">
-    <value>فشلت عملية اضافة صلاحيات جديدة للمستخدم</value>
+    <value />
   </data>
   <data name="FailedToRemoveOldClaims" xml:space="preserve">
-    <value>حدث حطأ اثناء حذف صلاحيات الاستخدام القديمة للمستخدمين</value>
+    <value />
   </data>
   <data name="FailedToRemoveOldRoles" xml:space="preserve">
-    <value>فشلت عملية حذف الصلاحيات القديمة</value>
+    <value />
   </data>
   <data name="FailedToUpdateClaims" xml:space="preserve">
-    <value>حدث حطأ اثناء تحديث صلاحيات الاستخدام للمستخدمين</value>
+    <value />
   </data>
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
-    <value>فشلت عملية تحديث الصلاحيات للمستخدم</value>
+    <value />
   </data>
   <data name="FailedToUploadImage" xml:space="preserve">
-    <value>حدث خطأ اثناء رفع الصورة</value>
+    <value />
   </data>
   <data name="InvaildCode" xml:space="preserve">
-    <value>هذا الكود غير صحيح</value>
+    <value />
   </data>
   <data name="IsExist" xml:space="preserve">
-    <value>موجود بالفعل</value>
+    <value />
   </data>
   <data name="IsNotExist" xml:space="preserve">
-    <value> غير موجود</value>
+    <value />
   </data>
   <data name="Message" xml:space="preserve">
-    <value>الرسالة</value>
+    <value />
   </data>
   <data name="NameEn" xml:space="preserve">
-    <value>الاسم</value>
+    <value />
   </data>
   <data name="NameAr" xml:space="preserve">
-    <value>الاسم</value>
+    <value />
   </data>
   <data name="NoImage" xml:space="preserve">
-    <value>من فضلك قم بإختيار صورة</value>
+    <value />
   </data>
   <data name="NotEmpty" xml:space="preserve">
-    <value>لا يمكن ترك العنصر فارغ</value>
+    <value />
   </data>
   <data name="NotFound" xml:space="preserve">
-    <value>غير متوفر</value>
+    <value />
   </data>
   <data name="Password" xml:space="preserve">
-    <value>الباسورد</value>
+    <value />
   </data>
   <data name="PasswordNotCorrect" xml:space="preserve">
-    <value>هذا الباسورد غير صحيح</value>
+    <value />
   </data>
   <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
-    <value>الباسورد والباسورد المؤكد يجب ان يكونوا متساويين</value>
+    <value />
   </data>
   <data name="RefreshTokenIsExpired" xml:space="preserve">
-    <value>رمز التنشيط الذي تستخمه انتهت صلاحية</value>
+    <value />
   </data>
   <data name="RefreshTokenIsNotFound" xml:space="preserve">
-    <value>رمز التنشيط الذي تستخمه ليس موجود</value>
+    <value />
   </data>
   <data name="Required" xml:space="preserve">
-    <value>هذا الحقل مطلوب</value>
+    <value />
   </data>
   <data name="RoleIsUsed" xml:space="preserve">
-    <value>هذه الصلاحية مستخدمة بالفعل لا يمكن الحذف</value>
+    <value />
   </data>
   <data name="RoleNotExist" xml:space="preserve">
-    <value>هذه الصلاحية ليست موجوده</value>
+    <value />
   </data>
   <data name="SendEmailFailed" xml:space="preserve">
-    <value>حدث خطأ اثناء ارسال الايميل</value>
+    <value />
   </data>
   <data name="Success" xml:space="preserve">
-    <value>تمت العملية بنجاح</value>
+    <value />
   </data>
   <data name="TokenIsExpired" xml:space="preserve">
-    <value> رمز الوصول الذي تستخدمة  منتهي الصلاحية</value>
+    <value />
   </data>
   <data name="TokenIsNotExpired" xml:space="preserve">
-    <value>رمز الوصول الذي تستخدمة ليس منتهي</value>
+    <value />
   </data>
   <data name="TryAgainInAnotherTime" xml:space="preserve">
-    <value>حدث خطأ اثناء العملية من فضلك حاول  مره اخري في وقت لاحق</value>
+    <value />
   </data>
   <data name="TryToRegisterAgain" xml:space="preserve">
-    <value>حدث خطأ غير متوقع اعد المحاولة مره اخري</value>
+    <value />
   </data>
   <data name="UnAuthorized" xml:space="preserve">
-    <value>لا تملك الصلاحية للوصول لتلك المصادر</value>
+    <value />
   </data>
   <data name="UnprocessableEntity" xml:space="preserve">
-    <value>يوجد مشاكل في صيغة الداتا او نوعها عن المطلوب </value>
+    <value />
   </data>
   <data name="Updated" xml:space="preserve">
-    <value>تم التعديل بنجاح</value>
+    <value />
   </data>
   <data name="UpdateFailed" xml:space="preserve">
-    <value>حدث خطأ اثناء عملية تحديث البيانات</value>
+    <value />
   </data>
   <data name="UserIsNotFound" xml:space="preserve">
-    <value>المستخدم غير موجود</value>
+    <value />
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>اسم المستخدم</value>
+    <value />
   </data>
   <data name="UserNameIsExist" xml:space="preserve">
-    <value>اسم المستخدم هذا موجود بالفعل</value>
+    <value />
   </data>
   <data name="UserNameIsNotExist" xml:space="preserve">
-    <value>اسم المستخدم هذا  غير موجود </value>
+    <value />
   </data>
   <data name="MaxLengthis255" xml:space="preserve">
-    <value>يجب ان لا يذيد طول النص عن 255</value>
+    <value />
   </data>
   <data name="MaxLengthis100" xml:space="preserve">
-    <value>يجب ان لا يذيد طول النص عن 100</value>
+    <value />
   </data>
 </root>

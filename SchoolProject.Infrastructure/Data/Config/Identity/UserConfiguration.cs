@@ -8,6 +8,11 @@ namespace SchoolProject.Infrastructure.Data.Config.Identity
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.Property(u => u.FullName)
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(255)
+                .IsRequired(true);
+
             builder.Property(u => u.Address)
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(250)
