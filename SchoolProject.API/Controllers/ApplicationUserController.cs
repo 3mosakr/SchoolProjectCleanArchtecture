@@ -47,6 +47,15 @@ namespace SchoolProject.API.Controllers
             return NewResult(response);
         }
 
+        [HttpPut]
+        [Route(Router.ApplicationUserRouting.ChangePassword)]
+        public async Task<IActionResult> ChangePassword(ChangeUserPasswordCommand command)
+        {
+            // send request to service to handle it
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
         [HttpDelete]
         [Route(Router.ApplicationUserRouting.Delete)]
         public async Task<IActionResult> Delete(int id)

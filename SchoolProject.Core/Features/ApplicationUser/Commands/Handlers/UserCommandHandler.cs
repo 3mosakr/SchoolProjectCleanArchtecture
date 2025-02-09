@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
@@ -12,7 +13,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
     public class UserCommandHandler : ResponseHandler,
         IRequestHandler<AddUserCommand, Response<string>>,
         IRequestHandler<EditUserCommand, Response<string>>,
-        IRequestHandler<DeleteUserCommand, Response<string>>
+        IRequestHandler<DeleteUserCommand, Response<string>>,
+        IRequestHandler<ChangeUserPasswordCommand, Response<string>>
     {
 
         #region Fields
@@ -72,6 +74,13 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
             // mapping 
             var newUser = _mapper.Map(request, ExistingUser);
+
+            // Check if UserName is Exist
+            var userByUserName = await _userManager
+                   .Users.FirstOrDefaultAsync(x => x.UserName == newUser.UserName && x.Id != newUser.Id);
+            if (userByUserName != null)
+                return BadRequest<string>(_localizer[SharedResourcesKeys.UserNameIsExist]);
+
             // update
             var result = await _userManager.UpdateAsync(newUser);
             // check result is success 
@@ -94,6 +103,30 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
                 return BadRequest<string>(_localizer[SharedResourcesKeys.DeletedFailed]);
             // return message
             return Success((string)_localizer[SharedResourcesKeys.Deleted]);
+
+        }
+
+        public async Task<Response<string>> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
+        {
+            // Check if User is Exist
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null)
+                return NotFound<string>();
+
+            // --------
+            // anther way you can delete old password and add new password from user
+            //var user1 = await _userManager.HasPasswordAsync(user);
+            //await _userManager.RemovePasswordAsync(user);
+            //await _userManager.AddPasswordAsync(user, request.NewPassword);
+            // --------
+            // change user password with check current password with old password
+            var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+
+            // Result
+            if (!result.Succeeded)
+                return BadRequest<string>(result.Errors.FirstOrDefault().Description);
+            return Success((string)_localizer[SharedResourcesKeys.Success]);
+
 
         }
 
