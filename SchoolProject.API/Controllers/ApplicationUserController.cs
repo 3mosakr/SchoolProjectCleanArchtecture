@@ -38,5 +38,14 @@ namespace SchoolProject.API.Controllers
 
         }
 
+        [HttpPut]
+        [Route(Router.ApplicationUserRouting.Edit)]
+        public async Task<IActionResult> Edit(EditUserCommand command)
+        {
+            // send request to service to handle it
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
+
     }
 }
